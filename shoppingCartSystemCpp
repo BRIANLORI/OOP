@@ -1,0 +1,137 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Product class to manage product information
+class Product {
+private:
+    string name;
+    double price;
+    int quantity;
+
+public:
+    Product(string name, double price, int quantity) {
+        this->name = name;
+        this->price = price;
+        this->quantity = quantity;
+    }
+
+    string getName() {
+        return name;
+    }
+
+    double getPrice() {
+        return price;
+    }
+
+    int getQuantity() {
+        return quantity;
+    }
+
+    void setQuantity(int quantity) {
+        this->quantity = quantity;
+    }
+};
+
+// Shopping cart class to manage cart functionalities
+class ShoppingCart {
+private:
+    vector<Product> items;
+
+public:
+    void addItem(Product item, int quantity) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items[i].getName() == item.getName()) {
+                int availableQuantity = items[i].getQuantity();
+                if (availableQuantity >= quantity) {
+                    items[i].setQuantity(availableQuantity - quantity);
+                    cout << "Item added to cart: " << item.getName() << endl;
+                    return;
+                } else {
+                    cout << "Insufficient quantity for the selected product." << endl;
+                    return;
+                }
+            }
+        }
+
+        cout << "Product not found." << endl;
+    }
+
+    void removeItem(string itemName) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items[i].getName() == itemName) {
+                items.erase(items.begin() + i);
+                cout << "Item removed from cart: " << itemName << endl;
+                return;
+            }
+        }
+
+        cout << "Item not found in the cart." << endl;
+    }
+
+    void updateItem(string itemName, int quantity) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items[i].getName() == itemName) {
+                items[i].setQuantity(quantity);
+                cout << "Item updated: " << itemName << endl;
+                return;
+            }
+        }
+
+        cout << "Item not found in the cart." << endl;
+    }
+
+    void displayItems() {
+        if (items.empty()) {
+            cout << "Cart is empty." << endl;
+        } else {
+            cout << "Items in cart:" << endl;
+            for (int i = 0; i < items.size(); i++) {
+                cout << "Name: " << items[i].getName() << ", Quantity: " << items[i].getQuantity() << endl;
+            }
+        }
+    }
+
+    double calculateTotalCost() {
+        double totalCost = 0.0;
+        for (int i = 0; i < items.size(); i++) {
+            totalCost += items[i].getPrice() * items[i].getQuantity();
+        }
+        return totalCost;
+    }
+};
+
+int main() {
+    // Creating some sample products
+    Product p1("Product 1", 10.0, 5);
+    Product p2("Product 2", 15.0, 3);
+    Product p3("Product 3", 20.0, 8);
+
+    // Creating a shopping cart
+    ShoppingCart cart;
+
+    // Adding products to the cart
+    cart.addItem(p1, 2);
+    cart.addItem(p2, 5);
+    cart.addItem(p3, 1);
+
+    // Displaying items in the cart
+    cart.displayItems();
+
+    // Updating quantity of an item in the cart
+    cart.updateItem("Product 2", 2);
+
+    // Removing an item from the cart
+    cart.removeItem("Product 1");
+
+    // Displaying items in the cart
+    cart.displayItems();
+
+    // Calculating total cost
+    double totalCost = cart.calculateTotalCost();
+    cout << "Total cost: " << totalCost << endl;
+
+    return 0;
+}
