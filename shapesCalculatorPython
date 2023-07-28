@@ -1,0 +1,41 @@
+class Shapes:
+    def get_length_and_width(self):
+        # Prompt the user to enter the length and width
+        length = int(input("Enter the length: \n "))
+        width = int(input("Enter the width: \n "))
+        
+        # Calculate the area and perimeter
+        self.calculate_area(length, width)
+        self.calculate_perimeter(length, width)
+        
+        # Display the area and perimeter
+        self.display_area(length, width)
+        self.display_perimeter(length, width)
+
+    def calculate_area(self, length, width):
+        # Calculate the area of the shape
+        area = length * width
+
+    def calculate_perimeter(self, length, width):
+        # Calculate the perimeter of the shape
+        perimeter = 2 * (length + width)
+
+    def display_area(self, length, width):
+        # Display the calculated area of the shape
+        print("The area is", length * width)
+
+    def display_perimeter(self, length, width):
+        # Display the calculated perimeter of the shape
+        print("The perimeter is", 2 * (length + width))
+
+
+def main():
+    # Create an instance of the Shapes class
+    shape = Shapes()
+    
+    # Call the get_length_and_width method to start the program
+    shape.get_length_and_width()
+
+
+if __name__ == "__main__":
+    main()
