@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+class Shapes {
+    public void getLengthAndWidth() {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Prompt the user to enter the length
+        System.out.println("Enter the length:");
+        int length = scanner.nextInt();
+        
+        // Prompt the user to enter the width
+        System.out.println("Enter the width:");
+        int width = scanner.nextInt();
+        
+        // Calculate the area and perimeter
+        calculateArea(length, width);
+        calculatePerimeter(length, width);
+        
+        // Display the area and perimeter
+        displayArea(length, width);
+        displayPerimeter(length, width);
+    }
+
+    private void calculateArea(int length, int width) {
+        // Calculate the area of the shape
+        int area = length * width;
+    }
+
+    private void calculatePerimeter(int length, int width) {
+        // Calculate the perimeter of the shape
+        int perimeter = 2 * (length + width);
+    }
+
+    private void displayArea(int length, int width) {
+        // Display the calculated area of the shape
+        System.out.println("The area is " + (length * width));
+    }
+
+    private void displayPerimeter(int length, int width) {
+        // Display the calculated perimeter of the shape
+        System.out.println("The perimeter is " + (2 * (length + width)));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of the Shapes class
+        Shapes shape = new Shapes();
+        
+        // Call the getLengthAndWidth method to start the program
+        shape.getLengthAndWidth();
+    }
+}
